@@ -1,0 +1,225 @@
+// Connect Four Notes
+
+Your game can look and work however you like but it must follow these basic rules.
+The board has six rows and seven columns
+Two players take turns selecting a column to drop their checker into
+When a player wins, a message appears to announce the victory
+After a player wins, it should be possible to reset the game and play again
+The gameplay should involve at least one animation (for example, the checkers could fall into their slot rather than just appear instantaneously)
+
+Bonus features
+Here are several ideas to make the game more interesting if you have the time
+After a player wins, visually indicate which four pieces on the board satisfied the victory condition
+Allow players to drag their pieces across the screen and drop them into their desired column using their mouse (or finger on touch screens)
+Allow players to play using only their keyboard
+Allow players at the beginning of the game to increase the number of columns on the board and the number of connected pieces that are required to win
+Allow a single player to play against the computer
+
+
+Click on column to drop a token of you color -> Start with click, possible to move to other setup afterwards
+
+List
+1. HTML/ CSS
+2. Javascript
+3.
+4.
+5.
+
+
+To-Dos
+
+For 1:
+a) Board:
+
+- Option 1: Seven columns with 7 slots in each (7 divs per column, 6 div = slot) -> Easiest! Player moves by columns, hence you can create an EventHandler per column.
+Use e.g. flexbox to place next to each other and on top of each other.
+div class = "column"
+nested in "column":  6 div class = "slots"
+nested in "slots: 6 class = "hole"
+
+
+- Option 2: Six rows with seven slots in each.
+- Option 3: One container with 42 slots in it (e.g. CSS grid, inline-block)
+
+b) Slots:
+
+- A circle in a square.
+- Add .player1 and .player2 classes to mark the slot as claimed by a player and change the hole color.
+
+How to:
+a) Make it a circle and board a solid background color
+b) Davids way:
+
+HTML
+<div class ="slot">
+<div class= "hole"></div>
+</div>
+
+CSS
+.slot {
+width: 100px;
+height: 100px;
+background-color: gold;
+padding: 10px; }
+
+.hole {
+width: 80px;
+height: 80px
+background-color: white,
+border-radius: 50%}
+
+(if drop animation is needed, make hole transparent-> Ask David if you want to do this animation)
+
+-When a player moves, we need to change the .holes color. For this, create new classes per player. Add the class via jQuery to <div class = "hole">:
+
+.slot.player1 .hole {
+background-color: tomato;
+}
+
+.slot.player2 .hole {
+background-color: green;
+}
+
+
+
+For 2:
+
+Build in this order:
+a) Column Selection
+- Assuming organization by columns + click as Event: Find the lowest empty slot (i.e. the lowers slot that has neither the player 1 class, nor the player2 class) in column and add the current players class to it.
+Therefore we have to keep track of current player (var currentPlayer = "player1", e.g. if currentPlayer = player1, then currentPlayer = player 2).
+Then you can also add currentPlayer variable as class.
+
+
+
+$(".column").on("click", function(e) {
+var col = $(e.currentTarget; )
+var slotsinColumn = col.children // col.find("slot");
+
+for (var i = 5; i >= 0; i --) {
+    if (!slotsinColumn.eq(i).hasClass("player1") && !slotsinColumn.eq(i).hasClass("player2")) {
+        break;
+        }
+    }
+
+slotsInColumn.eq(i).addClass(currentPlayer); //found lowest slot and added currentPlayer class.
+
+// check for victory
+
+if(checkforVictory(slotsInColumn)) {
+// do victory dance
+} else { var slotsInRow = $(".row" + i) //Otherwise  var slotsInRow = $(".slot:nth-child(" + (i+1) + ")")
+
+}
+
+
+// maybe show victory message
+
+// otherwise switch player
+switchPlayer();
+
+
+});
+
+b) Switching players
+
+
+function switchPlayer() {
+if (currentPlayer == "player 1")
+    {currentPlayer = player2}
+
+ else if (currentPlayer == "player 2")
+    {currentPlayer = player 1}
+ }
+
+Notes:
+- Make sure to use currentTarget not e.Target
+- You want to loop through the rows backwards.
+
+c) Checking victory:
+Done with loops. Before loop, create a counter -> If the current slot has the players slot increment the counter. If the counter reaches 4, the game is won.
+If a slot is encountered that doesnt have the players class, reset the counter to zero ("0").
+
+
+- Check vertically: Only check in column where last token was dropped (vertical victory only possible here)-> loop through that column.
+
+
+- Check horizontally: Need to find all the slots in the row (e.g. asign row 0-5 classes). Use a similar counter setup as in vertical checking.
+
+
+- Check diagonally:
+a) Scan board, for each slot get the three that are down and to the right and the three that are up and to the right.
+b) Looping over all slots -> Start from slot 0, then 1, then 2: Go over one column to right, one down. Then go up one column and one right. -> 64 loops for a losing situation
+jquery .next() should work. You have to to down onto the right and up onto the right.
+c) Scan board, for each slot get the three that are down and to the right by adding 7 to the index and three that are ....
+
+ The diagonal slots follow the pattern that they are numbered +7. Take the index, then add 7. If "i" = 0, then add 7, then 14, then 21.
+Going up it is +5.
+Make sure that their parents are consecutive, because slot 29 and 36 are not in line-> You have to check if their parents (column) are in continous columns.
+d) Hardcode an array of arrays with all victory conditions (24) for diagonal victory.
+
+var vic = [[0,7,14,21],[1,8,15,22]]
+loop through with nested loop -> Get innerArray.eq(i)
+
+
+function checkForVictory() {
+    var str = "";
+    for (var i = 0; 1 < slots.length; i++) {
+        if (slots.eq(i).hasClass(currentPlayer)) {
+            str += "v";
+        } else {
+            str += "x"
+        }
+        }
+
+    if (str.indexOf("vvvv") > -1) {
+        return true;
+    }
+}
+
+// After moves I have a string looking like "xxxvxv" or "xxxxvv" (which means the current player has won)
+
+Notes: Only check for currentPlayer, since only this player could have won.
+indexOf return -1 if the four v's are NOT in the string next to each other.
+
+d) Showing victory message
+
+Have it running in code code:
+a) Column Selection
+b) Checking victory
+c) Switching players
+d) Showing victory message
+
+
+General Option:
+- Use player1/player2 classes to inspect where tokens have been dropped.
+- Assign row 0-5 classes to divs
+
+
+
+Ability to restart the game:
+a) Easiest: Reload the page with javascript. object named location.href
+You can use location.reload(); to reload the page.
+
+Animations:
+- After victory, an arrow showed where the 4 connected slots parents
+- Shaking Board
+- The pieces fall out of the ground.
+- Sound effect after winning
+- Show which players turn it is, e.g. following the mouse
+-Indicate where token will be dropped in the column.
+
+
+Milestones:
+- Board on screen
+-User can lowest empty slot in columns
+-Switch players to drop tokens
+
+
+
+
+
+
+Possible Animations (worry about at the end):
+-Drop tokens from top
+-Transform slots from squares to circles

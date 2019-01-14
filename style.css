@@ -1,0 +1,319 @@
+body {
+    font-family: "arcadeClassic";
+    margin: 0px;
+    display: flex;
+    box-sizing: border-box;
+    background-color: #45aa44;
+    background-image: url(tetrisnew.jpg);
+
+    background-size: cover;
+    background-position: bottom;
+}
+
+@font-face {
+    font-family: "arcadeClassic";
+    src: URL(ARCADECLASSIC.ttf) format("truetype");
+}
+
+.column {
+    /* display: flex; */
+
+    display: inline-block;
+}
+
+.column:hover .arrow {
+    visibility: visible;
+    transition-delay: 0.5s;
+}
+
+.arrow {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid white;
+    visibility: hidden;
+    position: absolute;
+    margin-top: -30px;
+    margin-left: 40px;
+}
+
+.slot {
+    width: 90px;
+    height: 90px;
+    background-color: #101010;
+    padding: 10px;
+    overflow: hidden;
+    transition: 2s;
+    transition-delay: 1s;
+    animation-delay: 2s;
+    -webkit-transition: background-image 2s;
+    transition: background-image 2s;
+}
+
+.hole {
+    width: 70px;
+    height: 70px;
+    background-color: white;
+    /* border-radius: 50px; */
+    margin-left: 10px;
+    border: 5px #101010 solid;
+    box-shadow: 0 0 0 500px #101010;
+    transition: 2s;
+    transition-delay: 1s;
+    animation-delay: 2s;
+    -webkit-transition: background-image 2s;
+    transition: background-image 2s;
+}
+
+.slot.player1 .hole {
+    /* background-color: tomato; */
+    background-size: contain;
+    transition: 2s;
+    transition-delay: 1s;
+    /* background-color: red; */
+    background-image: url(tetrisred.jpg);
+    animation-delay: 2s;
+    -webkit-transition: background-image 2s ease-in-out;
+    transition: background-image 2s ease-in-out;
+}
+
+.slot.player2 .hole {
+    /* background-color: green; */
+    background-size: contain;
+    transition: 2s;
+    transition-delay: 1s;
+    animation-delay: 2s;
+    /* background-color: yellow; */
+    background-image: url(tetrisyellow.jpg);
+    -webkit-transition: background-image 2s;
+    transition: background-image 2s;
+}
+
+.board {
+    position: relative;
+
+    align-self: center;
+    margin: auto;
+    border-width: 10px;
+    border-color: #f0f0f0;
+    border-style: dashed;
+    box-sizing: border-box;
+    background-color: #101010;
+}
+
+.victory {
+    /* display: block;
+    position: absolute; */
+    color: #f0f0f0;
+    font-size: 50px;
+    /* width: 500px; */
+    height: 80px;
+    top: 20%;
+    z-index: 10;
+    visibility: hidden;
+
+    /* left: 50%;
+
+    transform: translate(-50%, -50%); */
+}
+
+h1 {
+    font-size: 60px;
+    color: #f0f0f0;
+    margin-left: 40px;
+}
+.playerturn {
+    position: absolute;
+    background-image: url(tetrisred.jpg);
+    background-size: contain;
+    color: #f0f0f0;
+    float: left;
+    font-size: 20px;
+    width: 80px;
+    height: 80px;
+    transition-delay: 0.5s;
+    margin-left: 150px;
+    top: 70%;
+    -webkit-box-shadow: 10px 10px 29px 3px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 29px 3px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 29px 3px rgba(0, 0, 0, 0.75);
+}
+
+.resume {
+    left: 50%;
+    transform: translateX(50%);
+}
+
+.resume:hover {
+    text-decoration: underline;
+}
+
+.pausebanner {
+    display: none;
+    background-color: black;
+    border-color: #f0f0f0;
+    border-width: 15px;
+    border-style: dashed;
+    box-sizing: border-box;
+    color: #f0f0f0;
+    font-size: 30px;
+
+    position: fixed;
+    width: 300px;
+    height: 200px;
+    top: 180px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+}
+
+.scoreboard {
+    font-size: 25px;
+}
+.scoreboard:hover {
+    text-decoration: underline;
+}
+#playerind {
+    /* display: block; */
+    position: absolute;
+
+    color: #f0f0f0;
+    font-size: 20px;
+    width: 100%;
+    z-index: 5;
+    background-size: contain;
+    width: 80px;
+    height: 80px;
+}
+
+.indicator {
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #f00;
+}
+
+.reload {
+    margin-top: 100px;
+    color: #f0f0f0;
+    font-size: 30px;
+    width: 250px;
+    height: 40px;
+    top: 20%;
+    z-index: 15;
+    visibility: hidden;
+    align-self: flex-start;
+}
+
+.reload:hover {
+    text-decoration: underline;
+}
+
+/* #resetbutton {
+    margin-top: 100px;
+    color: #f0f0f0;
+    font-size: 30px;
+    width: 250px;
+    height: 40px;
+    top: 20%;
+    z-index: 15;
+    visibility: hidden;
+    align-self: flex-start;
+}
+
+#resetbutton:hover {
+    text-decoration: underline; */
+/* } */
+
+.menu {
+    font-size: 35px;
+    color: #f0f0f0;
+    margin-left: 30px;
+}
+
+.menu:hover {
+    text-decoration: underline;
+}
+#startbanner {
+    display: block;
+    color: #f0f0f0;
+    top: 180px;
+    background-color: black;
+    height: 350px;
+    width: 900px;
+    position: fixed;
+
+    left: 50%;
+    transform: translateX(-50%);
+
+    z-index: 20;
+}
+
+#loading {
+    margin-top: 0;
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+}
+
+#blur {
+    position: fixed;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 5;
+}
+#blur2 {
+    position: fixed;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 5;
+    visibility: hidden;
+}
+
+.score {
+    width: 300px;
+    height: 250px;
+    background-color: #101010;
+    border-width: 7px;
+    border-color: #f0f0f0;
+    border-style: dashed;
+    margin-top: 200px;
+    margin-left: 60px;
+}
+
+.score span {
+    color: #f0f0f0;
+}
+
+.winbanner {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    color: #f0f0f0;
+    top: 220px;
+    background-color: black;
+    height: 350px;
+    width: 700px;
+    position: fixed;
+    visibility: hidden;
+    left: 50%;
+    transform: translateX(-50%);
+    /* overflow: hidden; */
+    z-index: 20;
+}
+
+.winbanner > div {
+    width: 400px;
+}

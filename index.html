@@ -1,0 +1,291 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Connect Four</title>
+    <link rel="stylesheet" href = "style.css">
+    <meta name = "viewport" content = "width=device-width, initial-scale=1">
+</head>
+<body>
+
+    <div id ="startbanner">
+        <h1>CONNECT 4</h1>
+
+  <span style='color: blue; font-size:40; margin-left: 40px'>I</span>
+  <span style='color: red; font-size:40px'>N&nbsp;&nbsp;</span>
+  <span style='color: yellow; font-size:40px; margin-left: 10px'>C</span>
+  <span style='color: blue; font-size:40px'>O</span>
+  <span style='color: green; font-size:40px'>L</span>
+  <span style='color: red; font-size:40px'>O</span>
+  <span style='color: yellow; font-size:40px'>R</span><br>
+
+
+        <br><span class="menu reset" >New Game</span>
+        <br><span class="menu" id="newgame">Continue</span>
+        <br><span class="menu" >High Score</span>
+        <br><span class="menu" >Credits</span>
+        <img id="loading" src="Loading.gif"  type="video/mp4">
+
+
+    </div>
+
+    <div class="pausebanner">PAUSED
+    <div class="resume">Resume</div></div>
+<!--
+    <audio autoplay controls><source src="Tetris3.wav"></audio> -->
+    <embed src="Tetris3.wav" class="themeaudio" hidden="true" autostart="true" loop="false">
+    <audio paused class="audio1"><source src="Pong1.wav"></audio>
+    <audio paused class="audio2" src="Pong2.wav"></audio>
+    <div id="blur"></div>
+    <div id="blur2"></div>
+    <div id="table"></div>
+
+    <div class="score">
+                <span style="font-size: 40px">Current Score</span><br><br>
+                <span style="font-size: 30px">Player 1: </span> <span class="player1-result"> </span><br>
+                 <span style="font-size: 30px">Player 2: </span><span class="player2-result"> </span><br><br>
+                <span class="scoreboard" id="pause">Pause</span><br>
+                <span class="scoreboard reset">Reset</span>
+            </div>
+
+    <div class= "playerturn">
+        <span id="playerind">Player 1 Starts</span>
+    </div>
+<div class = "board">
+<div class="winbanner">
+    <div class="victory"></div>
+
+    <div style="font-size: 40px">Current Score:</div>
+    <div style="font-size: 30px">Player 1: </span> <span class="player1-result"> </div>
+    <div style="font-size: 30px">Player 2: </span><span class="player2-result"> </div>
+    <div class="reload">Continue</div>
+    <!-- <div class ="reset" id="resetbutton">Reset Score</div> -->
+</div>
+    <div class="column">
+
+          <div class="arrow">
+            <i class="fa fa-chevron-down"></i>
+        </div>
+        <div class ="slot row0">
+            <div class= "hole">
+            </div>
+        </div>
+        <div class ="slot row1">
+            <div class= "hole">
+            </div>
+        </div>
+        <div class ="slot row2">
+            <div class= "hole">
+            </div>
+        </div>
+        <div class ="slot row3">
+            <div class= "hole">
+            </div>
+        </div>
+        <div class ="slot row4">
+            <div class= "hole">
+            </div>
+        </div>
+        <div class ="slot row5">
+            <div class= "hole">
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="column">
+
+        <div class="arrow">
+          <i class="fa fa-chevron-down"></i>
+      </div>
+        <div class ="slot row0">
+            <div class= "hole">
+            </div>
+        </div>
+        <div class ="slot row1">
+            <div class= "hole">
+            </div>
+        </div>
+        <div class ="slot row2">
+            <div class= "hole">
+            </div>
+        </div>
+        <div class ="slot row3">
+            <div class= "hole">
+            </div>
+        </div>
+        <div class ="slot row4">
+            <div class= "hole">
+            </div>
+        </div>
+        <div class ="slot row5">
+            <div class= "hole">
+            </div>
+        </div>
+    </div>
+
+    <div class="column">
+        <!-- <div class="arrow" id="arrow3"></div> -->
+        <div class="arrow">
+          <i class="fa fa-chevron-down"></i>
+      </div>
+        <div class ="slot row0">
+            <div class= "hole">
+            </div>
+        </div>
+        <div class ="slot row1">
+            <div class= "hole">
+            </div>
+        </div>
+        <div class ="slot row2">
+            <div class= "hole">
+            </div>
+        </div>
+        <div class ="slot row3">
+            <div class= "hole">
+            </div>
+        </div>
+        <div class ="slot row4">
+            <div class= "hole">
+            </div>
+        </div>
+        <div class ="slot row5">
+            <div class= "hole">
+            </div>
+        </div>
+    </div>
+
+    <div class="column">
+        <!-- <div class="arrow" id="arrow4"></div> -->
+        <div class="arrow">
+          <i class="fa fa-chevron-down"></i>
+      </div>
+        <div class ="slot row0">
+            <div class= "hole">
+            </div>
+        </div>
+        <div class ="slot row1">
+            <div class= "hole">
+            </div>
+        </div>
+        <div class ="slot row2">
+            <div class= "hole">
+            </div>
+        </div>
+        <div class ="slot row3">
+            <div class= "hole">
+            </div>
+        </div>
+        <div class ="slot row4">
+            <div class= "hole">
+            </div>
+        </div>
+        <div class ="slot row5">
+            <div class= "hole">
+            </div>
+        </div>
+    </div>
+
+    <div class="column">
+        <!-- <div class="arrow" id="arrow5"></div> -->
+        <div class="arrow">
+          <i class="fa fa-chevron-down"></i>
+      </div>
+        <div class ="slot row0">
+            <div class= "hole">
+            </div>
+        </div>
+        <div class ="slot row1">
+            <div class= "hole">
+            </div>
+        </div>
+        <div class ="slot row2">
+            <div class= "hole">
+            </div>
+        </div>
+        <div class ="slot row3">
+            <div class= "hole">
+            </div>
+        </div>
+        <div class ="slot row4">
+            <div class= "hole">
+            </div>
+        </div>
+        <div class ="slot row5">
+            <div class= "hole">
+            </div>
+        </div>
+    </div>
+
+    <div class="column">
+        <div class="arrow" id="arrow6"></div>
+        <div class ="slot row0">
+            <div class= "hole">
+            </div>
+        </div>
+        <div class ="slot row1">
+            <div class= "hole">
+            </div>
+        </div>
+        <div class ="slot row2">
+            <div class= "hole">
+            </div>
+        </div>
+        <div class ="slot row3">
+            <div class= "hole">
+            </div>
+        </div>
+        <div class ="slot row4">
+            <div class= "hole">
+            </div>
+        </div>
+        <div class ="slot row5">
+            <div class= "hole">
+            </div>
+        </div>
+    </div>
+
+    <div class="column">
+
+        <div class="arrow" id="arrow7"></div>
+        <div class ="slot row0">
+            <div class= "hole">
+            </div>
+        </div>
+        <div class ="slot row1">
+            <div class= "hole">
+            </div>
+        </div>
+        <div class ="slot row2">
+            <div class= "hole">
+            </div>
+        </div>
+        <div class ="slot row3">
+            <div class= "hole">
+            </div>
+        </div>
+        <div class ="slot row4">
+            <div class= "hole">
+            </div>
+        </div>
+        <div class ="slot row5">
+            <div class= "hole">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
